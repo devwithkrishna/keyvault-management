@@ -76,7 +76,7 @@ def main():
                          required=True, help='get / set / list / delete / list_deleted_secrets / recover actions')
     parser.add_argument('--secret_name', type=str, help= 'secret name',nargs='?', default='')
     parser.add_argument('--secret_value', type=str, help = 'secret value to be modified in keyvault',nargs='?' ,default='')
-    parser.add_argument('--content', type=str, help= 'content to add in secret metadata',default='')
+    parser.add_argument('--content', type=str, help= 'content to add in secret metadata',nargs='?',default='')
     args = parser.parse_args()
     keyvault_name = args.keyvault_name
     operation = args.operation
