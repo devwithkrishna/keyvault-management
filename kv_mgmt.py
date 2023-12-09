@@ -41,7 +41,7 @@ def keyvault_management_operations(keyvault_name: str, operation: str, secret_na
 
     elif operation == "delete":
         print (f"Operation being performed is : Delete on {keyvault_name}")
-        delete_secret = client.begin_delete_secret(secret_name).result ()
+        client.begin_delete_secret(secret_name).result ()
         print (f"deleting secret {secret_name} from {keyvault_name}")
 
     elif operation == "list_deleted_secrets":
@@ -54,7 +54,7 @@ def keyvault_management_operations(keyvault_name: str, operation: str, secret_na
             print(f"Deleted secret purge date is : {secrets.scheduled_purge_date}")
     elif operation == "recover":
         print(f"Operation being performed is : Recovery of secret on {keyvault_name}")
-        recover_secret = client.begin_recover_deleted_secret(secret_name).result()
+        client.begin_recover_deleted_secret(secret_name).result()
         print(f"Recovered secret {secret_name}")
     else:
         print (f"Invalid operation. Operation should be one among get, list, set, delete, list_deleted_secrets")
@@ -72,7 +72,7 @@ def main():
     parser.add_argument('--client_secret', type=str, default=os.getenv('AZURE_CLIENT_SECRET'), help= 'azure client secret for authentication')
     parser.add_argument('--tenant_id', type=str, default=os.getenv('AZURE_TENANT_ID'), help= 'azure tenant id for authentication')
     parser.add_argument('--keyvault_name', type= str, required=True,help='Keyvault to authenticate and modify the secrets in it')
-    parser.add_argument ('--operation', type= str,choices=['get', 'set', 'list', 'delete', 'list_deleted_secrets'],
+    parser.add_argument ('--operation', type= str,choices=['get', 'set', 'list', 'delete', 'list_deleted_secrets','recover'],
                          required=True, help='get / set / list / delete / list_deleted_secrets / recover actions')
     parser.add_argument('--secret_name', type=str, help= 'secret name', default='')
     parser.add_argument('--secret_value', type=str, help = 'secret value to be modified in keyvault',default='')

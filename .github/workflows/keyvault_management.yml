@@ -35,12 +35,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRETS }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Debug
+        run: |
+          echo "Secret Value: ${{ github.event.inputs.secret_value }}"
       - name: set up python
         uses: actions/setup-python@v2
       - name: package installations
