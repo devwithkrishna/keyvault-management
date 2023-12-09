@@ -50,6 +50,7 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
+          pipenv graph
       - name: run python program
         run: |
           pipenv run python3 kv_mgmt.py --keyvault_name ${{ github.event.inputs.keyvault_name }} \
