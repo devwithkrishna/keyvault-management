@@ -23,8 +23,8 @@ usage: kv_mgmt.py [-h] [--client_id CLIENT_ID] [--client_secret CLIENT_SECRET]
 
 |parameter name | mandatory values | optional | 
 |---------------|------------------|----------|
-|keyvault_name  | [x]              |          |
-|operation      | [x]              |          |
-|secret_name    |                  |   []     |
-|secret_value   |                  |   []     |
-|content        |                  |   []     |
+|keyvault_name  | -[ x ]           |          |
+|operation      | -[ x ]           |          |
+|secret_name    |                  |  - [ ]   |
+|secret_value   |                  |  - [ ]   |
+|content        |                  |  - [ ]   |
