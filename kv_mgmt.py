@@ -74,8 +74,8 @@ def main():
     parser.add_argument('--keyvault_name', type= str, required=True,help='Keyvault to authenticate and modify the secrets in it')
     parser.add_argument ('--operation', type= str,choices=['get', 'set', 'list', 'delete', 'list_deleted_secrets','recover'],
                          required=True, help='get / set / list / delete / list_deleted_secrets / recover actions')
-    parser.add_argument('--secret_name', type=str, help= 'secret name', default='')
-    parser.add_argument('--secret_value', type=str, help = 'secret value to be modified in keyvault',default='')
+    parser.add_argument('--secret_name', type=str, help= 'secret name',nargs='?', default='')
+    parser.add_argument('--secret_value', type=str, help = 'secret value to be modified in keyvault',nargs='?' ,default='')
     parser.add_argument('--content', type=str, help= 'content to add in secret metadata',default='')
     args = parser.parse_args()
     keyvault_name = args.keyvault_name
