@@ -1,5 +1,5 @@
 import argparse
-
+import os
 from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 from dotenv import load_dotenv
@@ -68,6 +68,9 @@ def main():
     """
     # Instatiate argparser
     parser = argparse.ArgumentParser (description='argumets for the function')
+    parser.add_argument('--client_id',type=str, default= os.getenv('AZURE_CLIENT_ID'), help= 'azure client id for authentication')
+    parser.add_argument('--client_secret', type=str, default=os.getenv('AZURE_CLIENT_SECRET'), help= 'azure client secret for authentication')
+    parser.add_argument('--tenant_id', type=str, default=os.getenv('AZURE_TENANT_ID'), help= 'azure tenant id for authentication')\
     parser.add_argument ('--keyvault_name', type= str, required=True,
                          help='Keyvault to authenticate and modify the secrets in it')
     parser.add_argument ('--operation', type= str,choices=['get', 'set', 'list', 'delete', 'list_deleted_secrets'],

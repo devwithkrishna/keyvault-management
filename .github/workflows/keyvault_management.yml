@@ -1,0 +1,60 @@
+name: keyvault management using python
+on:
+  workflow_dispatch:
+    inputs:
+      keyvault_name:
+        required: true
+        type: string
+        description: 'key vault name'
+        default: 'architects-keyvault'
+      operation:
+        description: 'get / set / list / delete / list_deleted_secrets / recover actions'
+        required: true
+        type: choice
+        options:
+          - get
+          - set
+          - list
+          - delete
+          - list_deleted_secrets
+          - recover
+      secret_name: 
+        description: 'secret name'
+        default: ''
+        type: string
+      secret_value: 
+        description: 'secret value'
+        type: string
+        default: ''
+      content:
+        description: 'content to add in secret metadata'
+        type: string
+        default: ''
+jobs:
+  keyvault_management:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRETS }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: set up python
+        uses: actions/setup-python@v2
+      - name: package installations
+        run: |
+          pip install pipenv
+          pipenv install
+      - name: run python program
+        run: |
+          pipenv run python3 kv_mgmt.py --keyvault_name ${{ github.event.inputs.keyvault_name }} \
+                                        --operation ${{ github.event.inputs.operation }} \
+                                        --secret_name ${{ github.event.inputs.secret_name }} \
+                                        --secret_value ${{ github.event.inputs.secret_value }} \
+                                        --content ${{ github.event.inputs.content }}
+      - name: job completed
+        run: echo "Job is completed"
+
+      
