@@ -24,7 +24,7 @@ def keyvault_management_operations(keyvault_name: str, operation: str, secret_na
         print (f"Operation being performed is : Set on {keyvault_name}")
         client.set_secret (secret_name, secret_value)
         client.update_secret_properties(secret_name, content_type= content)
-        print (f"Secret {secret_name} created on {keyvault_name}")
+        print (f"Secret {secret_name} configured on {keyvault_name}")
 
     elif operation == "list":
         print (f"Operation being performed is : List on {keyvault_name}")
