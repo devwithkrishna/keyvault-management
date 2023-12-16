@@ -27,7 +27,7 @@ on:
         type: string
         default: ''
       content:
-        description: 'content to add in secret metadata'
+        description: 'content to add in secret metadata. if more than a word enclose in quotes'
         type: string
         default: ''
 jobs:
